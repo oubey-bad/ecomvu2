@@ -205,21 +205,21 @@ export class TaskComponent {
                         </div>
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
-                                <router-link
-                                    v-for="item in navigation"
-                                    :key="item.name"
-                                    :to="item.href"
-                                    :class="[
-                                        item.current
-                                            ? 'bg-gray-900 text-purple-400'
-                                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                        'rounded-md px-3 py-2 text-sm font-medium',
-                                    ]"
-                                    :aria-current="
-                                        item.current ? 'page' : undefined
-                                    "
-                                    >{{ item.name }}</router-link
-                                >
+                                    <router-link
+                                        v-for="item in navigation"
+                                        :key="item.name"
+                                        :to="item.href"
+                                        :class="[
+                                            item.current
+                                                ? 'bg-gray-900 text-purple-400'
+                                                : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                            'rounded-md px-3 py-2 text-sm font-medium',
+                                        ]"
+                                        :aria-current="
+                                            item.current ? 'page' : undefined
+                                        "
+                                        >{{ item.name }}</router-link
+                                    >
                             </div>
                         </div>
                     </div>
@@ -409,7 +409,7 @@ const user = {
     imageUrl:
         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
-const navigation = computed(() => [
+const  navigation = computed(() => [
     { name: "Dashboard", href: "/admin", current: route.path === "/admin" },
     {
         name: "Products",

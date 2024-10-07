@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -9,6 +10,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
+
+    // app/Providers/RouteServiceProvider.php
+
+    
+
     public function register(): void
     {
         //

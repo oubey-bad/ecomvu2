@@ -1,10 +1,10 @@
 <template>
-  <ClientLayout>
-    <div>home</div>
-  </ClientLayout>
+  <p>{{data.user}}</p>
 </template>
 <script setup>
-import ClientLayout from '../components/ClientLayout.vue';
+import { useAuthStore } from '../../stores/auth';
+
+const {data} = storeToRefs( useAuthStore());
 
 
 </script>

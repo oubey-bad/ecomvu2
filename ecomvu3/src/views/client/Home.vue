@@ -1,12 +1,13 @@
-
-
 <template>
-    <div>hello Home  </div>
-  </template>
-  <script setup>
+  <p>{{ authStore.user }}</p>
+</template>
+<script setup>
+import { useAuthStore } from '../../stores/auth';
 
-  </script>
-  <style scoped>
-  
-  </style>
-  
+const authStore = useAuthStore();
+
+
+</script>
+<style scoped>
+
+</style>

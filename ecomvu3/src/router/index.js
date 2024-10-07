@@ -9,6 +9,7 @@ import RequestPassword from "../views/auth/RequestPassword.vue";
 import ResetNewPassword from "../views/auth/ResetNewPassword.vue";
 import GuestLayout from "../components/GuestLayout.vue";
 import Products from "../views/admin/Products.vue";
+import Register from "../views/auth/Register.vue";
 
 const routes = [
     {
@@ -17,7 +18,7 @@ const routes = [
         component: ClientLayout,
         children:[
             {
-                path:'',
+                path:'/home',
                 name:'home',
                 component:Home,
             },
@@ -56,6 +57,11 @@ const routes = [
                 path:'',
                 name:'login',
                 component:Login,
+            },
+            {
+                path:'/register',
+                name:'register',
+                component:Register,
             },
             {
                 path: "/request-password",
