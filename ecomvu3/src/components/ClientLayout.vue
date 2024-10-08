@@ -59,10 +59,10 @@
                         >{{ item.name }}</router-link
                     >
                     <li>
-                        <a  v-if="authStore.user"
-                            href="#"
+                        <a
+                            v-if="authStore.user"
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                            >{{ authStore.user }}</a
+                            >{{ authStore.user.name }}</a
                         >
                     </li>
                     <li>
@@ -149,11 +149,14 @@
     </footer>
 </template>
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useAuthStore } from "../stores/auth";
 
 const authStore = useAuthStore();
+onMounted(() => {
+    authStore.getUser();
+});
 const route = useRoute();
 
 const navigation = computed(() => [

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
   
 Route::get('/user', function (Request $request) {
-    return $request->user();
+    
+    return response()->json($request->user()) ;
 })->middleware(Authenticate::using('sanctum'));
 
 Route::controller(RegisterController::class)->group(function(){

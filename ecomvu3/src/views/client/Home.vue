@@ -1,13 +1,9 @@
 <template>
-  <p>{{ authStore.user }}</p>
+    <p v-if=" authStore.user ">{{ authStore.user.name }}</p>
 </template>
 <script setup>
-import { useAuthStore } from '../../stores/auth';
+import { useAuthStore } from "../../stores/auth";
 
 const authStore = useAuthStore();
-
-
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>
