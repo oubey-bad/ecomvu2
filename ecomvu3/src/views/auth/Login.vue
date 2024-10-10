@@ -33,13 +33,6 @@
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
-                <div    
-                    v-if="errors.email"
-                    class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
-                    role="alert"
-                >
-                    <span class="font-medium">{{ errors.email }}</span>
-                </div>
             </div>
 
             <div>
@@ -67,11 +60,14 @@
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                 </div>
-                <div v-if="errors.password"
-                    class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                <div
+                    v-if="errors.error"
+                    class="p-4 my-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
                     role="alert"
                 >
-                    <span class="font-medium">{{ errors.password }}</span>
+                    <span  class="font-medium">
+                        {{ errors.error }}
+                    </span>
                 </div>
             </div>
 
@@ -101,6 +97,7 @@
 import { storeToRefs } from "pinia";
 import { reactive } from "vue";
 import { useAuthStore } from "../../stores/auth";
+const { errors } = storeToRefs(useAuthStore());
 
 const { authenticate } = useAuthStore();
 const formData = reactive({

@@ -13,7 +13,9 @@ Route::get('/user', function (Request $request) {
 Route::controller(RegisterController::class)->group(function(){
     Route::post('register', 'register');
     Route::post('login', 'login');
+    Route::post('logout', 'logout')->middleware(Authenticate::using('sanctum'));
 });
+
 
 Route::apiResource('product', App\Http\Controllers\ProductController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
 

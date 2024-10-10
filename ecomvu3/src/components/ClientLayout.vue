@@ -45,7 +45,25 @@
                 <ul
                     class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
                 >
+                <router-link :to="{name:'home'}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ">
+                    Home
+                </router-link>
+                <li v-if="authStore.user" class="flex space-x-8" >
+                        <li>
+                        <a
+                            
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer"
+                            >{{ authStore.user.name }}</a
+                        >
+                        </li>
+                        <div>
+                        <form @submit.prevent="authStore.logout" >
+                            <button class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">logout </button>
+                        </form>
+                        </div>
+                    </li>
                     <router-link
+                        v-else
                         v-for="item in navigation"
                         :key="item.name"
                         :to="item.href"
@@ -58,34 +76,7 @@
                         :aria-current="item.current ? 'page' : undefined"
                         >{{ item.name }}</router-link
                     >
-                    <li>
-                        <a
-                            v-if="authStore.user"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                            >{{ authStore.user.name }}</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                            >Register</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                            >Pricing</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                            >Contact</a
-                        >
-                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -153,6 +144,8 @@ import { computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { useAuthStore } from "../stores/auth";
 
+
+const {authenticate} = useAuthStore();
 const authStore = useAuthStore();
 onMounted(() => {
     authStore.getUser();
@@ -160,7 +153,6 @@ onMounted(() => {
 const route = useRoute();
 
 const navigation = computed(() => [
-    { name: "Home", href: "/home", current: route.path === "/home" },
     {
         name: "Login",
         href: "/login",
@@ -171,16 +163,7 @@ const navigation = computed(() => [
         href: "/register",
         current: route.path === "/register",
     },
-    {
-        name: "Calendar",
-        href: "/admin/calendar",
-        current: route.path === "/admin/calendar",
-    },
-    {
-        name: "Reports",
-        href: "/admin/reports",
-        current: route.path === "/admin/reports",
-    },
+    
 ]);
 </script>
 <style scoped></style>

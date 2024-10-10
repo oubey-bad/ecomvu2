@@ -41,7 +41,15 @@ class RegisterController extends BaseController
             return $this->sendResponse($success, 'User login successfully.');
         } 
         else{ 
-            return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
+            return $this->sendError('Email or password is incorrect.', ['error'=>'Email or password is incorrect.']);
         } 
+    }
+    public function logout(){
+        auth()->user()->tokens()->delete();
+        return response()->json([
+            'success' => true,
+            'data' => [],
+            'message' => 'logout successfully',
+        ],200);
     }
 }

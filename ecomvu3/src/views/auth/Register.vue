@@ -69,7 +69,7 @@
                 <div>
                     <div class="flex items-center justify-between">
                         <label
-                            for="password"
+                            for="passwordc"
                             class="block text-sm font-medium leading-6 text-gray-900"
                             >Confirm Password</label
                         >
@@ -79,7 +79,7 @@
                         <input
                         v-model="formData.password_confirmation"
 
-                            id="password"
+                            id="passwordc"
                             name="password"
                             type="password"
                             autocomplete="current-password"

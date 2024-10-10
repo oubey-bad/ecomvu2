@@ -10,6 +10,7 @@ import ResetNewPassword from "../views/auth/ResetNewPassword.vue";
 import GuestLayout from "../components/GuestLayout.vue";
 import Products from "../views/admin/Products.vue";
 import Register from "../views/auth/Register.vue";
+import { useAuthStore } from "../stores/auth";
 
 const routes = [
     {
@@ -57,11 +58,14 @@ const routes = [
                 path:'',
                 name:'login',
                 component:Login,
+                meta:{ guest : true },
             },
             {
                 path:'/register',
                 name:'register',
                 component:Register,
+                meta:{ guest : true },
+
             },
             {
                 path: "/request-password",
@@ -80,9 +84,23 @@ const routes = [
     
 ];
 
+
+
 const router = createRouter({
     history: createWebHistory(),
     routes,
+});
+
+router.beforeEach(async(to,from) => {
+    const authStore = useAuthStore();
+    await authStore.getUser();
+    if (authStore.user && to.meta.guest) {
+        return  { name:'home'};
+    }
+    // if (!authStore.user && to.meta.admin) {
+    //     return  { name:'home'};
+    // }
+
 });
 
 export default router;
