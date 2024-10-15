@@ -15,8 +15,12 @@ Route::controller(RegisterController::class)->group(function(){
     Route::post('login', 'login');
     Route::post('logout', 'logout')->middleware(Authenticate::using('sanctum'));
 });
+Route::controller(RegisterController::class)->group(function(){
+    Route::apiResource('products', 'products');
+    
+});
 
 
-Route::apiResource('product', App\Http\Controllers\ProductController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+Route::apiResource('products', App\Http\Controllers\ProductController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
 
-Route::apiResource('category', App\Http\Controllers\CategoryController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+Route::apiResource('categories', App\Http\Controllers\CategoryController::class)->only(['index', 'store', 'show', 'update', 'destroy']);

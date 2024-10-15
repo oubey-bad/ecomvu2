@@ -11,61 +11,68 @@ import GuestLayout from "../components/GuestLayout.vue";
 import Products from "../views/admin/Products.vue";
 import Register from "../views/auth/Register.vue";
 import { useAuthStore } from "../stores/auth";
+import ProductCreate from "../views/admin/ProductCreate.vue";
 
 const routes = [
     {
         path: "/",
-        
+
         component: ClientLayout,
-        children:[
+        children: [
             {
-                path:'/home',
-                name:'home',
-                component:Home,
+                path: "/home",
+                name: "home",
+                component: Home,
             },
-        ]
+        ],
     },
     {
         path: "/admin",
         component: AdminLayout,
 
-        children:[
+        children: [
             {
-                path:'/admin/products',
-                name:'products',
-                component:Products,
-                meta:{title:"Products"}
+                path: "/admin/products",
+                name: "products",
+                component: Products,
+                meta: { title: "Products" },
+                   
             },
             {
-                path:'/admin/show',
-                name:'show',
-                component:Show,
+                path: "/admin/products/create",
+                name: "productCreate",
+                component: ProductCreate,
+                meta: { title: "Products" },
+            },
+                
+            {
+                path: "/admin/show",
+                name: "show",
+                component: Show,
             },
             {
-                path:'',
-                name:'dashboard',
-                component:Dashboard,
-
+                path: "",
+                name: "dashboard",
+                component: Dashboard,
             },
-        ]
+        ],
     },
     {
         path: "/login",
-        
-        component: GuestLayout,  
-        children:[
+
+        component: GuestLayout,
+        children: [
             {
-                path:'',
-                name:'login',
-                component:Login,
-                meta:{ guest : true },
+                path: "",
+                name: "login",
+                component: Login,
+                meta: { guest: true },
             },
             {
-                path:'/register',
-                name:'register',
-                component:Register,
-                meta:{ guest : true },
-
+                path: "/register",
+                name: "register",
+                component: Register,
+                meta: { guest: true },
             },
             {
                 path: "/request-password",
@@ -77,30 +84,24 @@ const routes = [
                 name: "reset-new-password",
                 component: ResetNewPassword,
             },
-        ]
+        ],
     },
-    
-    
-    
 ];
-
-
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
 });
 
-router.beforeEach(async(to,from) => {
+router.beforeEach(async (to, from) => {
     const authStore = useAuthStore();
     await authStore.getUser();
     if (authStore.user && to.meta.guest) {
-        return  { name:'home'};
+        return { name: "home" };
     }
     // if (!authStore.user && to.meta.admin) {
     //     return  { name:'home'};
     // }
-
 });
 
 export default router;
