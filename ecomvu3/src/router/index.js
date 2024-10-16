@@ -12,6 +12,10 @@ import Products from "../views/admin/Products.vue";
 import Register from "../views/auth/Register.vue";
 import { useAuthStore } from "../stores/auth";
 import ProductCreate from "../views/admin/ProductCreate.vue";
+import ProductColors from "../views/admin/ProductColors.vue";
+import ProductColorCreate from "../views/admin/ProductColorCreate.vue";
+import ProductSizeCreate from "../views/admin/ProductSizeCreate.vue";
+import ProductSizes from "../views/admin/ProductSizes.vue";
 
 const routes = [
     {
@@ -44,7 +48,31 @@ const routes = [
                 component: ProductCreate,
                 meta: { title: "Products" },
             },
-                
+            {
+                path: "/admin/products/colors",
+                name: "productColors",
+                component: ProductColors,
+                meta: { title: "الألوان" },
+            },
+            {
+                path: "/admin/products/colors/create",
+                name: "ProductColorCreate",
+                component: ProductColorCreate,
+                meta: { title: "أضف لونًا جديدًا" },
+            },
+            
+            {
+                path: "/admin/products/sizes",
+                name: "productSizes",
+                component: ProductSizes,
+                meta: { title: "الأحجام" },
+            },
+            {
+                path: "/admin/products/sizes/create",
+                name: "ProductSizeCreate",
+                component: ProductSizeCreate,
+                meta: { title: "أضف حجما جديدًا" },
+            },
             {
                 path: "/admin/show",
                 name: "show",
