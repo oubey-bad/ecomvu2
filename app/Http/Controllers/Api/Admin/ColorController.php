@@ -13,7 +13,7 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Color::all());
     }
 
     /**
@@ -29,7 +29,11 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255|unique:colors,name',
+            'hex_code' => 'required|string|regex:/^#[0-9A-Fa-f]{6}$/',
+        ]);
+        Color::create($request->all());
     }
 
     /**

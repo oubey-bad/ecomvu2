@@ -27,6 +27,7 @@ export const useAuthStore = defineStore("authStore", {
                 method: "POST",
                 body: JSON.stringify(formData),
             });
+           
             const data = await res.json();
             if (data.data.error) {
                 this.errors = data.data;

@@ -15,7 +15,7 @@
 
 
         
-        <div class=" sm:rounded-lg">
+        <div  class=" sm:rounded-lg">
             <table class=" text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
@@ -31,11 +31,14 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody v-if="colors.length > 0">
                         <tr
+                            v-for="color in colors"
+                            :key="color.id"
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ color.name }}
                             </th>
                             <th scope="row"
                                 class="px-6 py-4   font-medium text-gray-900 whitespace-nowrap dark:text-white border " >
@@ -64,7 +67,13 @@
 
     </div>  </template>
   <script setup>
-  
+import { onMounted, ref } from 'vue';
+import { useAdminPrductColorStore } from '../../stores/admin/AdminProductColorService';
+
+
+  const colors = ref([]);
+  const {getColors} = useAdminPrductColorStore();
+  onMounted(async() => (colors.value =await getColors()))
   </script>
   <style scoped>
   

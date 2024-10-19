@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\Admin\ColorController;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,6 @@ Route::controller(RegisterController::class)->group(function(){
 Route::apiResource('products', App\Http\Controllers\ProductController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
 
 Route::apiResource('categories', App\Http\Controllers\CategoryController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+
+Route::apiResource('colors', ColorController::class)->only(['index','store'])->middleware(Authenticate::using('sanctum'));
+
